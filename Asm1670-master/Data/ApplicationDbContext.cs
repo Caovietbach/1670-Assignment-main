@@ -48,8 +48,8 @@ namespace Asm1670.Data
                 new IdentityRole
                 {
                     Id ="3",
-                    Name = "StoreOwner",
-                    NormalizedName = "StoreOwner"
+                    Name = "Store Owner",
+                    NormalizedName = "Store Owner"
                 }
             );
         }
@@ -129,9 +129,9 @@ namespace Asm1670.Data
         private void SeedCustomer(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasData(
-                new Customer { Id = 1, Name = "Bui Duc Cuong", Age = 20, Phone = "0843034237", Email = "cuongbuiqqq", Address = "Hai Duong" },
-                new Customer { Id = 2, Name = "Bui Duc Cuong", Age = 20, Phone = "0843034237", Email = "cuongbuiqqq", Address = "Hai Duong" },
-                new Customer { Id = 3, Name = "Bui Duc Cuong", Age = 20, Phone = "0843034237", Email = "cuongbuiqqq", Address = "Hai Duong" }
+                new Customer { Id = 1, Name = "Bui Duc Cuong", Email = "cuongbuiqqq", Address = "Hai Duong" },
+                new Customer { Id = 2, Name = "Bui Duc Cuong", Email = "cuongbuiqqq", Address = "Hai Duong" },
+                new Customer { Id = 3, Name = "Bui Duc Cuong", Email = "cuongbuiqqq", Address = "Hai Duong" }
             );
         }
         private void SeedBook(ModelBuilder modelBuilder)
