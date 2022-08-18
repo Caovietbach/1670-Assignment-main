@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Asm1670.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220818005245_test")]
-    partial class test
+    [Migration("20220818032225_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace Asm1670.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -43,6 +46,8 @@ namespace Asm1670.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CustomerId");
 
@@ -104,6 +109,38 @@ namespace Asm1670.Migrations
                         {
                             Id = 3,
                             Amount = 3
+                        });
+                });
+
+            modelBuilder.Entity("Asm1670.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Entertainment"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "History"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Romance"
                         });
                 });
 
@@ -194,24 +231,24 @@ namespace Asm1670.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "HANOI",
-                            ConcurrencyStamp = "203a21bd-4e59-4efc-93db-453dfb1bfdce",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = "HCM",
-                            ConcurrencyStamp = "9a4ccb08-e473-4450-8a88-4ffb65523aaf",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
-                        },
-                        new
-                        {
-                            Id = "DaNang",
-                            ConcurrencyStamp = "97d7f790-2301-4cf2-9273-f6446c9bfe4e",
+                            Id = "1",
+                            ConcurrencyStamp = "63436140-419e-441e-857d-3747025498d2",
                             Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            NormalizedName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "2dcf901a-a1ee-4d0b-81c9-ff6f16f4ad1e",
+                            Name = "Customer",
+                            NormalizedName = "Customer"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "59ae3664-5491-4fd1-a80b-15afedd731fe",
+                            Name = "StoreOwner",
+                            NormalizedName = "StoreOwner"
                         });
                 });
 
@@ -302,6 +339,52 @@ namespace Asm1670.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7958cb62-eab1-4fd8-8d4c-a219f5a91b2d",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "admin@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJR7hXsHTgFbwq0g4Jp+FHtB4LkI2w0Va3h7lNhtq/CK7IH40lUMYq9cnfg04eDBtg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3f6ad098-32ff-4161-a447-9f2e98f72892",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "94e6e0d5-455e-4a21-b6b0-3ffa90ff78d9",
+                            Email = "customer@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "customer@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJsx4mye7A2L2B0KLkYjnijasAIkCArfS7zqecwn0hYIsY6oRLbELbzOUSZGDVg4hg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1152b80d-e2bc-4cbd-82e5-5b96c12e5b2c",
+                            TwoFactorEnabled = false,
+                            UserName = "customer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "66897488-ba79-4dc3-b861-62ceca4128f1",
+                            Email = "storeowner@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "storeowner@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHdBq+vp6bd+HfP/wA6O7IaKdT0G8uyaFg1JcmX/v4BuA5evHpWtKB0tjCxYZknx6A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "275b2c33-6718-4701-be64-7ad7bce59c97",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -365,6 +448,18 @@ namespace Asm1670.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -395,6 +490,10 @@ namespace Asm1670.Migrations
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Asm1670.Models.Category", null)
+                        .WithMany("Book")
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Asm1670.Models.Customer", "Customer")
                         .WithMany("Book")

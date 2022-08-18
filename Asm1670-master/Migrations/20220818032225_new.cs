@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Asm1670.Migrations
 {
-    public partial class test : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,6 +57,19 @@ namespace Asm1670.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cart", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "category",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,7 +204,8 @@ namespace Asm1670.Migrations
                     Title = table.Column<string>(nullable: true),
                     Price = table.Column<float>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false),
-                    CartId = table.Column<int>(nullable: false)
+                    CartId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -202,6 +216,12 @@ namespace Asm1670.Migrations
                         principalTable: "Cart",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Book_category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Book_Customer_CustomerId",
                         column: x => x.CustomerId,
@@ -215,9 +235,19 @@ namespace Asm1670.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "HANOI", "203a21bd-4e59-4efc-93db-453dfb1bfdce", "Manager", "MANAGER" },
-                    { "HCM", "9a4ccb08-e473-4450-8a88-4ffb65523aaf", "Customer", "CUSTOMER" },
-                    { "DaNang", "97d7f790-2301-4cf2-9273-f6446c9bfe4e", "Admin", "ADMIN" }
+                    { "1", "63436140-419e-441e-857d-3747025498d2", "Admin", "Admin" },
+                    { "2", "2dcf901a-a1ee-4d0b-81c9-ff6f16f4ad1e", "Customer", "Customer" },
+                    { "3", "59ae3664-5491-4fd1-a80b-15afedd731fe", "StoreOwner", "StoreOwner" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1", 0, "7958cb62-eab1-4fd8-8d4c-a219f5a91b2d", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEJR7hXsHTgFbwq0g4Jp+FHtB4LkI2w0Va3h7lNhtq/CK7IH40lUMYq9cnfg04eDBtg==", null, false, "3f6ad098-32ff-4161-a447-9f2e98f72892", false, "admin@gmail.com" },
+                    { "2", 0, "94e6e0d5-455e-4a21-b6b0-3ffa90ff78d9", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAEJsx4mye7A2L2B0KLkYjnijasAIkCArfS7zqecwn0hYIsY6oRLbELbzOUSZGDVg4hg==", null, false, "1152b80d-e2bc-4cbd-82e5-5b96c12e5b2c", false, "customer@gmail.com" },
+                    { "3", 0, "66897488-ba79-4dc3-b861-62ceca4128f1", "storeowner@gmail.com", false, false, null, null, "storeowner@gmail.com", "AQAAAAEAACcQAAAAEHdBq+vp6bd+HfP/wA6O7IaKdT0G8uyaFg1JcmX/v4BuA5evHpWtKB0tjCxYZknx6A==", null, false, "275b2c33-6718-4701-be64-7ad7bce59c97", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -241,19 +271,33 @@ namespace Asm1670.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Book",
-                columns: new[] { "Id", "CartId", "CustomerId", "Price", "Title" },
-                values: new object[] { 1, 1, 1, 13000f, "Doraemon" });
+                table: "category",
+                columns: new[] { "Id", "CategoryName" },
+                values: new object[,]
+                {
+                    { 1, "Entertainment" },
+                    { 2, "History" },
+                    { 3, "Romance" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[,]
+                {
+                    { "1", "1" },
+                    { "2", "2" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Book",
-                columns: new[] { "Id", "CartId", "CustomerId", "Price", "Title" },
-                values: new object[] { 2, 2, 2, 13000f, "Doraemon" });
-
-            migrationBuilder.InsertData(
-                table: "Book",
-                columns: new[] { "Id", "CartId", "CustomerId", "Price", "Title" },
-                values: new object[] { 3, 3, 3, 13000f, "Doraemon" });
+                columns: new[] { "Id", "CartId", "CategoryId", "CustomerId", "Price", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, null, 1, 13000f, "Doraemon" },
+                    { 2, 2, null, 2, 13000f, "Doraemon" },
+                    { 3, 3, null, 3, 13000f, "Doraemon" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -300,6 +344,11 @@ namespace Asm1670.Migrations
                 column: "CartId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Book_CategoryId",
+                table: "Book",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Book_CustomerId",
                 table: "Book",
                 column: "CustomerId");
@@ -333,6 +382,9 @@ namespace Asm1670.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cart");
+
+            migrationBuilder.DropTable(
+                name: "category");
 
             migrationBuilder.DropTable(
                 name: "Customer");
