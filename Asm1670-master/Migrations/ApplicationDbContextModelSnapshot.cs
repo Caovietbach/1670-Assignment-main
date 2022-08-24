@@ -35,8 +35,14 @@ namespace Asm1670.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float>("Price")
                         .HasColumnType("real");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -58,6 +64,7 @@ namespace Asm1670.Migrations
                             CartId = 1,
                             CustomerId = 1,
                             Price = 13000f,
+                            Quantity = 0,
                             Title = "Doraemon"
                         },
                         new
@@ -66,6 +73,7 @@ namespace Asm1670.Migrations
                             CartId = 2,
                             CustomerId = 2,
                             Price = 13000f,
+                            Quantity = 0,
                             Title = "Doraemon"
                         },
                         new
@@ -74,6 +82,7 @@ namespace Asm1670.Migrations
                             CartId = 3,
                             CustomerId = 3,
                             Price = 13000f,
+                            Quantity = 0,
                             Title = "Doraemon"
                         });
                 });
@@ -153,18 +162,12 @@ namespace Asm1670.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -175,28 +178,22 @@ namespace Asm1670.Migrations
                         {
                             Id = 1,
                             Address = "Hai Duong",
-                            Age = 20,
                             Email = "cuongbuiqqq",
-                            Name = "Bui Duc Cuong",
-                            Phone = "0843034237"
+                            Name = "Bui Duc Cuong"
                         },
                         new
                         {
                             Id = 2,
                             Address = "Hai Duong",
-                            Age = 20,
                             Email = "cuongbuiqqq",
-                            Name = "Bui Duc Cuong",
-                            Phone = "0843034237"
+                            Name = "Bui Duc Cuong"
                         },
                         new
                         {
                             Id = 3,
                             Address = "Hai Duong",
-                            Age = 20,
                             Email = "cuongbuiqqq",
-                            Name = "Bui Duc Cuong",
-                            Phone = "0843034237"
+                            Name = "Bui Duc Cuong"
                         });
                 });
 
@@ -230,23 +227,23 @@ namespace Asm1670.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "63436140-419e-441e-857d-3747025498d2",
+                            ConcurrencyStamp = "c9c2b70c-9105-439c-baf8-2d2076b37fcd",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "2dcf901a-a1ee-4d0b-81c9-ff6f16f4ad1e",
+                            ConcurrencyStamp = "42c3b854-5c7a-4846-b2f7-f323a8cfa2fa",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "59ae3664-5491-4fd1-a80b-15afedd731fe",
-                            Name = "StoreOwner",
-                            NormalizedName = "StoreOwner"
+                            ConcurrencyStamp = "762adbd0-b800-44f0-aa45-c80943e2dfee",
+                            Name = "Store Owner",
+                            NormalizedName = "Store Owner"
                         });
                 });
 
@@ -343,14 +340,14 @@ namespace Asm1670.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7958cb62-eab1-4fd8-8d4c-a219f5a91b2d",
+                            ConcurrencyStamp = "a4431cf4-0298-42fd-834b-8b175d784414",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJR7hXsHTgFbwq0g4Jp+FHtB4LkI2w0Va3h7lNhtq/CK7IH40lUMYq9cnfg04eDBtg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKa5jhqYT8WVngxBioNTnAPFFuNoJjkfsQVTKLM+VPHTPbIIwNEYkL7yiIlxE5tiug==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f6ad098-32ff-4161-a447-9f2e98f72892",
+                            SecurityStamp = "fa1c29d2-6963-404f-aafd-889e91913c85",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -358,14 +355,14 @@ namespace Asm1670.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "94e6e0d5-455e-4a21-b6b0-3ffa90ff78d9",
+                            ConcurrencyStamp = "35770888-0f5a-4bc0-86d1-a514bc639523",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJsx4mye7A2L2B0KLkYjnijasAIkCArfS7zqecwn0hYIsY6oRLbELbzOUSZGDVg4hg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA3MADEmV28IbO5lSOl9nBhzUdO0HFRHc6FsHmNGWC7n+/TmyKpJuARH8Ci/V3XZzg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1152b80d-e2bc-4cbd-82e5-5b96c12e5b2c",
+                            SecurityStamp = "20edb7d8-5e20-4b22-8962-c85c52154820",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
                         },
@@ -373,14 +370,14 @@ namespace Asm1670.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "66897488-ba79-4dc3-b861-62ceca4128f1",
+                            ConcurrencyStamp = "93aa79d8-7042-482f-9936-584e565752e4",
                             Email = "storeowner@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "storeowner@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHdBq+vp6bd+HfP/wA6O7IaKdT0G8uyaFg1JcmX/v4BuA5evHpWtKB0tjCxYZknx6A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJG8Imz5KVHzlJvfIjAxiZn18JRe4ml2kEK0DFjPh/UiUJyAGSqFJ54iDnhjoI1SJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "275b2c33-6718-4701-be64-7ad7bce59c97",
+                            SecurityStamp = "0a99694a-9e78-4b29-9476-733279378fe5",
                             TwoFactorEnabled = false
                         });
                 });
@@ -457,6 +454,11 @@ namespace Asm1670.Migrations
                         {
                             UserId = "2",
                             RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "3"
                         });
                 });
 
@@ -489,7 +491,7 @@ namespace Asm1670.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Asm1670.Models.Category", null)
+                    b.HasOne("Asm1670.Models.Category", "Category")
                         .WithMany("Book")
                         .HasForeignKey("CategoryId");
 

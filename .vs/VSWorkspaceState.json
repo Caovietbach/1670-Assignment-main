@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Asm1670-master",
+    "\\Asm1670-master\\Controllers",
+    "\\Asm1670-master\\Views",
+    "\\Asm1670-master\\Views\\Book",
+    "\\Asm1670-master\\Views\\Cart",
+    "\\Asm1670-master\\Views\\Category",
+    "\\Asm1670-master\\Views\\Customer",
+    "\\Asm1670-master\\Views\\Home",
+    "\\Asm1670-master\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Asm1670-master\\Controllers\\CartController.cs",
+  "PreviewInSolutionExplorer": false
+}
